@@ -1,5 +1,5 @@
 const TMDB_API_KEY = '8ebfde042f847e6ec8fc7cd15d0f6c5f';
-const YOUTUBE_API_KEY = 'YOUR_YOUTUBE_API_KEY'; // Replace this with your YouTube API Key
+const YOUTUBE_API_KEY = 'AIzaSyCV3vzz4tzMj2Bj4W6qMgab_3S-6w1w1HE';
 
 const languageSelect = document.getElementById("language");
 const eraSelect = document.getElementById("era");
