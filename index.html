@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movie Charades Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 Movie Charades</h1>
+
+    <div class="controls">
+      <label for="language">Choose Language:</label>
+      <select id="language" aria-label="Language Selection">
+        <option value="te">Telugu</option>
+        <option value="hi">Hindi</option>
+        <option value="ta">Tamil</option>
+        <option value="kn">Kannada</option>
+        <option value="ml">Malayalam</option>
+        <option value="en">English</option>
+      </select>
+
+      <label for="era">Choose Era:</label>
+      <select id="era" aria-label="Era Selection">
+        <option value="new">New (2015+)</option>
+        <option value="old">Old (1950–2014)</option>
+      </select>
+
+      <label for="timerInput">Set Timer to Guess (seconds):</label>
+      <input type="number" id="timerInput" min="10" max="300" value="60" aria-label="Timer Input" />
+
+      <button id="startBtn">▶️ Generate Random Movie Name</button>
+      <button id="stopBtn" disabled>⏹️ Stop Timer</button>
+      <button id="playHintBtn" disabled>🔊 Play Song Hint</button>
+    </div>
+
+    <div id="movieName">🎥 Movie will appear here</div>
+    <div id="timer">⏱️ Time Left: 60s</div>
+    <div id="songPlayer"></div>
+  </div>
+
+  <footer>
+    Designed and Developed by <strong>Premsingh Padya</strong> | 🎉 Movie Game © 2025
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
