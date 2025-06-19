@@ -30,7 +30,7 @@ startBtn.addEventListener("click", async () => {
 
   const movies = await fetchMoviesFromTMDB(lang, era);
   if (!movies.length) {
-    movieName.textContent = " No movies found.";
+    movieName.textContent = "❌ No movies found.";
     startBtn.disabled = false;
     stopBtn.disabled = true;
     timerInput.disabled = false;
@@ -38,19 +38,19 @@ startBtn.addEventListener("click", async () => {
   }
 
   selectedMovie = movies[Math.floor(Math.random() * movies.length)];
-  movieName.textContent = ` ${selectedMovie}`;
+  movieName.textContent = `🎬 ${selectedMovie}`;
   playHintBtn.disabled = false;
 
   timeLeft = inputTime;
-  timerDisplay.textContent = ` Time Left: ${timeLeft}s`;
+  timerDisplay.textContent = `⏱️ Time Left: ${timeLeft}s`;
 
   clearInterval(timer);
   timer = setInterval(() => {
     timeLeft--;
-    timerDisplay.textContent = ` Time Left: ${timeLeft}s`;
+    timerDisplay.textContent = `⏱️ Time Left: ${timeLeft}s`;
     if (timeLeft <= 0) {
       clearInterval(timer);
-      timerDisplay.textContent = " Time's up!";
+      timerDisplay.textContent = "⏱️ Time's up!";
       askIfGuessed();
     }
   }, 1000);
@@ -69,18 +69,16 @@ playHintBtn.addEventListener("click", () => {
     kn: "Kannada", ml: "Malayalam", en: "English"
   };
   const langName = langNameMap[languageSelect.value] || "";
-  const query = encodeURIComponent(`${selectedMovie} ${langName} movie song`);
+  const query = `${selectedMovie} ${langName} movie song`;
+  const searchURL = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
 
-  // Open in new tab (optional)
-  // window.open(`https://www.youtube.com/results?search_query=${query}`, "_blank");
+  // Open YouTube in new tab
+  window.open(searchURL, "_blank");
 
-  // Embed YouTube search directly
+  // Optional message
   songPlayer.innerHTML = `
-    <p>🔊 Hint: Showing songs for <strong>${selectedMovie} ${langName}</strong></p>
-    <iframe width="100%" height="315"
-      src="https://www.youtube.com/embed?listType=search&list=${query}&autoplay=1"
-      frameborder="0" allowfullscreen allow="autoplay; encrypted-media">
-    </iframe>
+    <p>🔊 Opened YouTube search for: <strong>${selectedMovie} ${langName}</strong></p>
+    <p>You can pick a song from there as a guessing hint.</p>
   `;
 });
 
@@ -92,8 +90,8 @@ function askIfGuessed() {
   selectedMovie = "";
 
   const guessed = confirm("Did the team guess the movie correctly?");
-  alert(guessed ? "Great! Ready for the next one." : " No worries! Try again.");
-  timerDisplay.textContent = " Timer stopped.";
+  alert(guessed ? "✅ Great! Ready for the next one." : "❌ No worries! Try again.");
+  timerDisplay.textContent = "⏱️ Timer stopped.";
 }
 
 async function fetchMoviesFromTMDB(lang, era) {
