@@ -30,7 +30,7 @@ startBtn.addEventListener("click", async () => {
 
   const movies = await fetchMoviesFromTMDB(lang, era);
   if (!movies.length) {
-    movieName.textContent = "❌ No movies found.";
+    movieName.textContent = " No movies found.";
     startBtn.disabled = false;
     stopBtn.disabled = true;
     timerInput.disabled = false;
@@ -38,19 +38,19 @@ startBtn.addEventListener("click", async () => {
   }
 
   selectedMovie = movies[Math.floor(Math.random() * movies.length)];
-  movieName.textContent = `🎬 ${selectedMovie}`;
+  movieName.textContent = ` ${selectedMovie}`;
   playHintBtn.disabled = false;
 
   timeLeft = inputTime;
-  timerDisplay.textContent = `⏱️ Time Left: ${timeLeft}s`;
+  timerDisplay.textContent = `Time Left: ${timeLeft}s`;
 
   clearInterval(timer);
   timer = setInterval(() => {
     timeLeft--;
-    timerDisplay.textContent = `⏱️ Time Left: ${timeLeft}s`;
+    timerDisplay.textContent = ` Time Left: ${timeLeft}s`;
     if (timeLeft <= 0) {
       clearInterval(timer);
-      timerDisplay.textContent = "⏱️ Time's up!";
+      timerDisplay.textContent = " Time's up!";
       askIfGuessed();
     }
   }, 1000);
@@ -77,7 +77,7 @@ playHintBtn.addEventListener("click", () => {
 
   // Optional message
   songPlayer.innerHTML = `
-    <p>🔊 Opened YouTube search for: <strong>${selectedMovie} ${langName}</strong></p>
+    <p> Opened YouTube search for: <strong>${selectedMovie} in ${langName}</strong></p>
     <p>You can pick a song from there as a guessing hint.</p>
   `;
 });
@@ -90,8 +90,8 @@ function askIfGuessed() {
   selectedMovie = "";
 
   const guessed = confirm("Did the team guess the movie correctly?");
-  alert(guessed ? "✅ Great! Ready for the next one." : "❌ No worries! Try again.");
-  timerDisplay.textContent = "⏱️ Timer stopped.";
+  alert(guessed ? "Great! Ready for the next one." : " No worries! Try again.");
+  timerDisplay.textContent = " Timer stopped.";
 }
 
 async function fetchMoviesFromTMDB(lang, era) {
