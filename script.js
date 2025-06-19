@@ -70,15 +70,13 @@ playHintBtn.addEventListener("click", () => {
   };
   const langName = langNameMap[languageSelect.value] || "";
   const query = `${selectedMovie} ${langName} movie song`;
-  const searchURL = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
 
-  // Open YouTube in new tab
-  window.open(searchURL, "_blank");
-
-  // Optional message
   songPlayer.innerHTML = `
-    <p> Opened YouTube search for: <strong>${selectedMovie} in ${langName}</strong></p>
-    <p>You can pick a song from there as a guessing hint.</p>
+    <p> Hint songs for: <strong>${selectedMovie} in (${langName})</strong></p>
+    <iframe width="100%" height="315"
+      src="https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(query)}&autoplay=1"
+      frameborder="0" allowfullscreen allow="autoplay; encrypted-media">
+    </iframe>
   `;
 });
 
