@@ -1,5 +1,4 @@
 const TMDB_API_KEY = '8ebfde042f847e6ec8fc7cd15d0f6c5f';
-const YOUTUBE_API_KEY = 'AIzaSyCV3vzz4tzMj2Bj4W6qMgab_3S-6w1w1HE';
 
 const languageSelect = document.getElementById("language");
 const eraSelect = document.getElementById("era");
@@ -31,7 +30,7 @@ startBtn.addEventListener("click", async () => {
 
   const movies = await fetchMoviesFromTMDB(lang, era);
   if (!movies.length) {
-    movieName.textContent = " No movies found.";
+    movieName.textContent = "⚠️ No movies found.";
     startBtn.disabled = false;
     stopBtn.disabled = true;
     timerInput.disabled = false;
@@ -39,19 +38,19 @@ startBtn.addEventListener("click", async () => {
   }
 
   selectedMovie = movies[Math.floor(Math.random() * movies.length)];
-  movieName.textContent = ` ${selectedMovie}`;
+  movieName.textContent = `🎬 ${selectedMovie}`;
   playHintBtn.disabled = false;
 
   timeLeft = inputTime;
-  timerDisplay.textContent = `Time Left: ${timeLeft}s`;
+  timerDisplay.textContent = `⏱️ Time Left: ${timeLeft}s`;
 
   clearInterval(timer);
   timer = setInterval(() => {
     timeLeft--;
-    timerDisplay.textContent = `Time Left: ${timeLeft}s`;
+    timerDisplay.textContent = `⏱️ Time Left: ${timeLeft}s`;
     if (timeLeft <= 0) {
       clearInterval(timer);
-      timerDisplay.textContent = "Time's up!";
+      timerDisplay.textContent = "⏱️ Time's up!";
       askIfGuessed();
     }
   }, 1000);
@@ -62,56 +61,27 @@ stopBtn.addEventListener("click", () => {
   askIfGuessed();
 });
 
-playHintBtn.addEventListener("click", async () => {
+playHintBtn.addEventListener("click", () => {
   if (!selectedMovie) return;
 
-  // Map language code to language name for YouTube query
   const langNameMap = {
-    te: "Telugu",
-    hi: "Hindi",
-    ta: "Tamil",
-    kn: "Kannada",
-    ml: "Malayalam",
-    en: "English"
+    te: "Telugu", hi: "Hindi", ta: "Tamil",
+    kn: "Kannada", ml: "Malayalam", en: "English"
   };
-
   const langName = langNameMap[languageSelect.value] || "";
+  const query = encodeURIComponent(`${selectedMovie} ${langName} movie song`);
 
-  // Build query including language
-  const query = `${selectedMovie} ${langName} movie song`;
+  // Open in new tab (optional)
+  // window.open(`https://www.youtube.com/results?search_query=${query}`, "_blank");
 
-  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet` +
-              `&q=${encodeURIComponent(query)}` +
-              `&type=video&videoEmbeddable=true` +
-              `&key=${YOUTUBE_API_KEY}&maxResults=5`;
-
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
-
-    // Filter out only embeddable, non-live videos with videoId
-    const embeddableVideos = data.items.filter(item =>
-      item.id.videoId && item.snippet.liveBroadcastContent === "none"
-    );
-
-    if (!embeddableVideos.length) {
-      songPlayer.innerHTML = " No embeddable song found.";
-      return;
-    }
-
-    const choice = embeddableVideos[Math.floor(Math.random() * embeddableVideos.length)];
-    const videoId = choice.id.videoId;
-
-    songPlayer.innerHTML = `
-      <iframe
-        width="100%" height="215"
-        src="https://www.youtube.com/embed/${videoId}?autoplay=1"
-        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-      </iframe>`;
-  } catch (err) {
-    console.error("YouTube API error:", err);
-    songPlayer.innerHTML = " Error loading song hint.";
-  }
+  // Embed YouTube search directly
+  songPlayer.innerHTML = `
+    <p>🔊 Hint: Showing songs for <strong>${selectedMovie} ${langName}</strong></p>
+    <iframe width="100%" height="315"
+      src="https://www.youtube.com/embed?listType=search&list=${query}&autoplay=1"
+      frameborder="0" allowfullscreen allow="autoplay; encrypted-media">
+    </iframe>
+  `;
 });
 
 function askIfGuessed() {
@@ -122,8 +92,8 @@ function askIfGuessed() {
   selectedMovie = "";
 
   const guessed = confirm("Did the team guess the movie correctly?");
-  alert(guessed ? "Great! Ready for the next one." : " No worries! Try again.");
-  timerDisplay.textContent = " Timer stopped.";
+  alert(guessed ? "✅ Great! Ready for the next one." : "❌ No worries! Try again.");
+  timerDisplay.textContent = "⏱️ Timer stopped.";
 }
 
 async function fetchMoviesFromTMDB(lang, era) {
