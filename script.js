@@ -78,12 +78,20 @@ stopBtn.addEventListener("click", () => {
 });
 
 playHintBtn.addEventListener("click", () => {
-  if (!selectedMovie || !songLinks[selectedMovie]) {
+  const lang = languageSelect.value;
+  const era = eraSelect.value;
+
+  if (
+    !selectedMovie ||
+    !songLinks[lang] ||
+    !songLinks[lang][era] ||
+    !songLinks[lang][era][selectedMovie]
+  ) {
     songPlayer.innerHTML = `<p>No song link found for this movie.</p>`;
     return;
   }
 
-  const searchUrl = songLinks[selectedMovie];
+  const searchUrl = songLinks[lang][era][selectedMovie];
   const embedUrl = searchUrl.replace(
     "/results?search_query=",
     "/embed?listType=search&list="
