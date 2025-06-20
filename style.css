@@ -7,13 +7,21 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(120deg, #ffecd2, #fcb69f, #ff9a9e, #fad0c4);
+  background: linear-gradient(-45deg, #ffecd2, #fcb69f, #ff9a9e, #fad0c4, #ffdde1);
+  background-size: 400% 400%;
+  animation: bgShift 15s ease infinite;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1rem;
+}
+
+@keyframes bgShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Main Container */
@@ -49,7 +57,6 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
-/* Heading Animation */
 @keyframes gradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -130,6 +137,19 @@ button:disabled {
   text-shadow: 0 0 8px #00ffccaa;
 }
 
+/* Song Player */
+#songPlayer {
+  margin-top: 1.5rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  background: #111;
+  min-height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Footer */
 footer {
   margin-top: 2rem;
@@ -147,7 +167,7 @@ footer {
 /* Responsive */
 @media (max-width: 600px) {
   h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   #movieName {
@@ -165,11 +185,9 @@ footer {
   }
 
   #songPlayer {
-  margin-top: 1rem;
-  width: 100%;
-  max-width: 100%;
-}
-
+    width: 100%;
+    max-width: 100%;
+  }
 
   footer {
     font-size: 0.75rem;
