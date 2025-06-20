@@ -5,71 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Premsingh Padya's Movie Charades Game - Guess Movies with Music!</title>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <!-- Meta Info -->
+  <meta name="description" content="Play the ultimate Movie Charades Game with your friends! Randomly generate movie names by language and era, set a custom timer, and use song hints!" />
+  <meta name="keywords" content="Movie Charades, Bollywood, Tollywood, Guess Movie Game, Indian Movie Game" />
+  <meta name="author" content="Premsingh Padya" />
 
-  <!-- Meta Description -->
-  <meta name="description" content="Play the ultimate Movie Charades Game with your friends! Randomly generate movie names by language and era, set a custom timer, and use Bollywood/Tollywood song hints!">
-
-  <!-- Meta Keywords -->
-  <meta name="keywords" content="Movie Charades, Bollywood Charades, Tollywood Game, Guess Movie Game, Film Song Game, Movie Game Online, Indian Movie Guessing Game, Charades Timer">
-
-  <!-- Author -->
-  <meta name="author" content="Premsingh Padya">
-
-  <!-- Open Graph for Social Sharing -->
-  <meta property="og:title" content="Movie Charades - Guess the Movie Game with Song Hints" />
-  <meta property="og:description" content="Generate a random movie, start a countdown, and let your friends guess with the help of musical hints. A fun and engaging party game for all movie lovers!" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Movie Charades - Guess the Movie with Songs!" />
+  <meta property="og:description" content="Guess random movies from different Indian languages with song hints!" />
   <meta property="og:image" content="https://premsinghpadyalc.github.io/moviegame/assets/banner.png" />
   <meta property="og:url" content="https://premsinghpadyalc.github.io/moviegame/" />
   <meta property="og:type" content="website" />
 
-  <!-- Twitter Card -->
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Movie Charades Game - Guess Movies with Music!" />
-  <meta name="twitter:description" content="The best way to play movie guessing with songs, timer, and fun hints!" />
+  <meta name="twitter:title" content="Movie Charades Game - Play with Music!" />
+  <meta name="twitter:description" content="Play guessing game with movies and song hints!" />
   <meta name="twitter:image" content="https://premsinghpadyalc.github.io/moviegame/assets/banner.png" />
 
-  <!-- Stylesheet -->
+  <!-- Favicon & Styles -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <div class="container">
-    <h1>Movie Charades</h1>
+    <h1>Movie Charades Game</h1>
 
     <div class="controls">
       <label for="language">Choose Movie Language:</label>
-      <select id="language" aria-label="Language Selection">
-        <option value="te">Telugu</option>
+      <select id="language" aria-label="Select Movie Language">
         <option value="hi">Hindi</option>
+        <option value="te">Telugu</option>
         <option value="ta">Tamil</option>
         <option value="kn">Kannada</option>
         <option value="ml">Malayalam</option>
         <option value="en">English</option>
+        <option value="pa">Punjabi</option>
+        <option value="gu">Gujarati</option>
       </select>
 
       <label for="era">Choose Era:</label>
-      <select id="era" aria-label="Era Selection">
+      <select id="era" aria-label="Select Era">
         <option value="new">New (2015+)</option>
         <option value="old">Old (1950–2014)</option>
       </select>
 
-      <label for="timerInput">Set Timer to Guess (seconds):</label>
-      <input type="number" id="timerInput" min="10" max="300" value="60" aria-label="Timer Input" />
+      <label for="timerInput">Set Timer (in seconds):</label>
+      <input type="number" id="timerInput" min="10" max="300" value="60" />
 
-      <button id="startBtn"> Generate Random Movie Name</button>
-      <button id="stopBtn" disabled> Stop Timer</button>
-      <button id="playHintBtn" disabled> Play Hint For This Movie</button>
+      <div class="buttons">
+        <button id="startBtn">Generate Movie</button>
+        <button id="stopBtn" disabled> Stop Timer</button>
+        <button id="playHintBtn" disabled> Play Song Hint</button>
+      </div>
     </div>
 
-    <div id="movieName"> Movie will appear here</div>
-    <div id="timer"> Time Left Display's Here</div>
-    <div id="songPlayer"></div>
+    <div id="movieName" class="output-box"> Movie will appear here</div>
+    <div id="timer" class="output-box"> Timer displays here</div>
+    <div id="songPlayer" class="output-box"> Song player appears here</div>
   </div>
 
   <footer>
-    Designed and Developed by <strong>Premsingh Padya</strong>'s Movie Game © 2025
+    Made with Love by <strong>Premsingh Padya</strong> — Movie Game © 2025
   </footer>
 
   <script type="module" src="script.js"></script>
