@@ -100,7 +100,6 @@ button {
   font-size: 1.25rem;
   user-select: none;
   box-shadow: 0 4px 10px rgba(255, 126, 179, 0.7);
-  margin-top: 10px;
 }
 
 button:hover:not(:disabled) {
@@ -113,33 +112,6 @@ button:disabled {
   color: #777;
   cursor: not-allowed;
   box-shadow: none;
-}
-
-/* Score Display */
-#scoreDisplay {
-  font-size: 1.4rem;
-  margin-top: 10px;
-  color: #00ffcc;
-  background-color: #111;
-  padding: 12px;
-  border-radius: 10px;
-  box-shadow: 0 0 12px 2px #00ffcc55;
-  font-weight: bold;
-}
-
-/* Volume Button */
-#volumeBtn {
-  background: #444;
-  color: #fff;
-  font-size: 1rem;
-  padding: 10px;
-  margin-top: 8px;
-  border-radius: 6px;
-  transition: background 0.3s ease;
-}
-
-#volumeBtn:hover {
-  background: #666;
 }
 
 /* Movie Display */
@@ -222,4 +194,3 @@ footer {
     padding: 0.7rem;
   }
 }
-
