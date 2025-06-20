@@ -1,3 +1,11 @@
+/*!
+ * Movie Charades Game (Proprietary Software)
+ * Copyright (c) 2025 Premsingh Padya
+ * All rights reserved.
+ * Unauthorized use or reproduction of this file is strictly prohibited.
+ * Contact: premsinghpadya944@gmail.com
+ */
+
 let movieData = {};
 let songLinks = {};
 
