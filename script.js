@@ -16,16 +16,12 @@ let timer, timeLeft = 60, selectedMovie = "";
 // Load movie data
 fetch("data/movies.json")
   .then((res) => res.json())
-  .then((data) => {
-    movieData = data;
-  });
+  .then((data) => movieData = data);
 
-// Load song link data
-fetch("data/song_links.json")
+// Load song video ID data
+fetch("data/video_ids.json")
   .then((res) => res.json())
-  .then((data) => {
-    songLinks = data;
-  });
+  .then((data) => songLinks = data);
 
 startBtn.addEventListener("click", () => {
   const inputTime = parseInt(timerInput.value);
@@ -42,7 +38,6 @@ startBtn.addEventListener("click", () => {
 
   const lang = languageSelect.value;
   const era = eraSelect.value;
-
   const movies = movieData[lang]?.[era] || [];
 
   if (!movies.length) {
@@ -78,15 +73,12 @@ stopBtn.addEventListener("click", () => {
 });
 
 playHintBtn.addEventListener("click", () => {
-  if (!selectedMovie || !songLinks[languageSelect.value]?.[eraSelect.value]?.[selectedMovie]) {
-    songPlayer.innerHTML = `<p>No song link found for this movie.</p>`;
-    return;
-  }
+  const lang = languageSelect.value;
+  const era = eraSelect.value;
+  const videoId = songLinks[lang]?.[era]?.[selectedMovie];
 
-  const videoId = songLinks[languageSelect.value][eraSelect.value][selectedMovie];
-
-  if (videoId === "N/A") {
-    songPlayer.innerHTML = `<p>No video found for this movie.</p>`;
+  if (!videoId || videoId === "N/A") {
+    songPlayer.innerHTML = `<p>🎵 No video found for this movie.</p>`;
     return;
   }
 
@@ -102,3 +94,14 @@ playHintBtn.addEventListener("click", () => {
       allowfullscreen>
     </iframe>`;
 });
+
+function askIfGuessed() {
+  stopBtn.disabled = true;
+  startBtn.disabled = false;
+  timerInput.disabled = false;
+  playHintBtn.disabled = true;
+  selectedMovie = "";
+  const guessed = confirm("Did the team guess the movie correctly?");
+  alert(guessed ? "Great! Ready for the next one." : "No worries! Try again.");
+  timerDisplay.textContent = "Timer stopped.";
+}
