@@ -1,5 +1,6 @@
 let movieData = {};
 let songLinks = {};
+let score = 0;
 
 const languageSelect = document.getElementById("language");
 const eraSelect = document.getElementById("era");
@@ -10,8 +11,10 @@ const playHintBtn = document.getElementById("playHintBtn");
 const movieName = document.getElementById("movieName");
 const timerDisplay = document.getElementById("timer");
 const songPlayer = document.getElementById("songPlayer");
+const scoreDisplay = document.getElementById("scoreDisplay");
+const volumeBtn = document.getElementById("volumeBtn");
 
-let timer, timeLeft = 60, selectedMovie = "";
+let timer, timeLeft = 60, selectedMovie = "", isMuted = false;
 
 // Load movie data
 fetch("data/movies.json")
@@ -35,6 +38,7 @@ startBtn.addEventListener("click", () => {
   timerInput.disabled = true;
   playHintBtn.disabled = true;
   songPlayer.innerHTML = "";
+  movieName.innerHTML = "";
 
   const lang = languageSelect.value;
   const era = eraSelect.value;
@@ -42,14 +46,13 @@ startBtn.addEventListener("click", () => {
 
   if (!movies.length) {
     movieName.textContent = "No movies found.";
-    startBtn.disabled = false;
-    stopBtn.disabled = true;
-    timerInput.disabled = false;
+    resetButtons();
     return;
   }
 
   selectedMovie = movies[Math.floor(Math.random() * movies.length)];
-  movieName.textContent = selectedMovie;
+
+  movieName.innerHTML = `<strong>${selectedMovie}</strong> <small>(${lang.toUpperCase()}, ${era})</small>`;
   playHintBtn.disabled = false;
 
   timeLeft = inputTime;
@@ -61,7 +64,7 @@ startBtn.addEventListener("click", () => {
     timerDisplay.textContent = `Time Left: ${timeLeft}s`;
     if (timeLeft <= 0) {
       clearInterval(timer);
-      timerDisplay.textContent = "Time's up!";
+      timerDisplay.textContent = " Time's up!";
       askIfGuessed();
     }
   }, 1000);
@@ -75,14 +78,19 @@ stopBtn.addEventListener("click", () => {
 playHintBtn.addEventListener("click", () => {
   const lang = languageSelect.value;
   const era = eraSelect.value;
-  const videoId = songLinks[lang]?.[era]?.[selectedMovie];
+  const videoData = songLinks[lang]?.[era]?.[selectedMovie];
 
-  if (!videoId || videoId === "N/A") {
-    songPlayer.innerHTML = `<p>🎵 No video found for this movie.</p>`;
+  if (!videoData || videoData.length === 0) {
+    songPlayer.innerHTML = `<p> No video found for this movie.</p>`;
     return;
   }
 
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  // Choose a random video ID if multiple are available
+  const videoId = Array.isArray(videoData)
+    ? videoData[Math.floor(Math.random() * videoData.length)]
+    : videoData;
+
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${isMuted ? 1 : 0}`;
 
   songPlayer.innerHTML = `
     <iframe
@@ -92,16 +100,35 @@ playHintBtn.addEventListener("click", () => {
       frameborder="0"
       allow="autoplay; encrypted-media"
       allowfullscreen>
-    </iframe>`;
+    </iframe>
+    <p style="margin-top: 8px;"> Playing a hint song from the movie...</p>
+  `;
+});
+
+volumeBtn.addEventListener("click", () => {
+  isMuted = !isMuted;
+  volumeBtn.textContent = isMuted ? " Muted" : " Unmuted";
 });
 
 function askIfGuessed() {
+  clearInterval(timer);
   stopBtn.disabled = true;
   startBtn.disabled = false;
   timerInput.disabled = false;
   playHintBtn.disabled = true;
-  selectedMovie = "";
+
   const guessed = confirm("Did the team guess the movie correctly?");
-  alert(guessed ? "Great! Ready for the next one." : "No worries! Try again.");
+  if (guessed) score++;
+
+  scoreDisplay.textContent = ` Score: ${score}`;
+  selectedMovie = "";
   timerDisplay.textContent = "Timer stopped.";
+  songPlayer.innerHTML += `<p> ${guessed ? "Correct!" : "Try again next time."}</p>`;
+}
+
+function resetButtons() {
+  startBtn.disabled = false;
+  stopBtn.disabled = true;
+  playHintBtn.disabled = true;
+  timerInput.disabled = false;
 }
