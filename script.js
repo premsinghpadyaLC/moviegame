@@ -72,7 +72,7 @@ startBtn.addEventListener("click", () => {
 
   selectedMovie = movies[Math.floor(Math.random() * movies.length)];
   movieName.textContent = ` ${selectedMovie}`;
-  playHintBtn.textContent = ` Play Hint for: ${selectedMovie}`;
+  playHintBtn.textContent = ` Didn't Guess yet? Play Hint for: ${selectedMovie}`;
   playHintBtn.disabled = false;
 
   timeLeft = inputTime;
@@ -150,7 +150,7 @@ function showNewMovie(lang, era) {
 
   selectedMovie = movies[Math.floor(Math.random() * movies.length)];
   movieName.textContent = ` ${selectedMovie}`;
-  playHintBtn.textContent = ` Didn't Guess? Play Hint for: ${selectedMovie}`;
+  playHintBtn.textContent = ` Didn't Guess yet? Play Hint for: ${selectedMovie}`;
   playHintBtn.disabled = false;
   songPlayer.innerHTML = "";
 
