@@ -37,13 +37,16 @@ fetch("data/video_ids.json")
 
 startBtn.addEventListener("click", () => {
   const inputTime = parseInt(timerInput.value);
-  if (isNaN(inputTime) || inputTime < 10 || inputTime > 300) {
-    alert("Please enter a timer value between 10 and 300 seconds.");
+  if (isNaN(inputTime) || inputTime < 10 || inputTime > 600) {
+    alert("Please enter a timer value between 10 and 600 seconds.");
     return;
   }
 
   stopBtn.disabled = false;
+  startBtn.disabled = true;
   timerInput.disabled = true;
+  languageSelect.disabled = true;
+  eraSelect.disabled = true;
   playHintBtn.disabled = true;
   songPlayer.innerHTML = "";
 
@@ -54,7 +57,10 @@ startBtn.addEventListener("click", () => {
   if (!movies.length) {
     movieName.textContent = "No movies found.";
     stopBtn.disabled = true;
+    startBtn.disabled = false;
     timerInput.disabled = false;
+    languageSelect.disabled = false;
+    eraSelect.disabled = false;
     return;
   }
 
@@ -115,7 +121,10 @@ playHintBtn.addEventListener("click", () => {
 
 function askIfGuessed() {
   stopBtn.disabled = true;
+  startBtn.disabled = false;
   timerInput.disabled = false;
+  languageSelect.disabled = false;
+  eraSelect.disabled = false;
   playHintBtn.disabled = true;
   selectedMovie = "";
   movieName.textContent = "Movie-name will appear here";
