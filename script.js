@@ -98,14 +98,19 @@ playHintBtn.addEventListener("click", () => {
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
 
   songPlayer.innerHTML = `
-    <iframe
-      width="100%"
-      height="300"
-      src="${embedUrl}"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>`;
+    <div class="video-container">
+      <iframe
+        width="100%"
+        height="300"
+        src="${embedUrl}"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+      <div class="video-credit">
+        <small> Movie Hint Provided by <strong>Premsingh Padya</strong> © 2025</small>
+      </div>
+    </div>`;
 });
 
 function askIfGuessed() {
