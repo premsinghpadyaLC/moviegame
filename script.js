@@ -120,7 +120,7 @@ playHintBtn.addEventListener("click", () => {
         allowfullscreen>
       </iframe>
       <div class="video-credit">
-        <small> Movie Hint Provided by <strong>Premsingh Padya</strong> © 2025</small>
+        <small> Movie Hint proudly Provided by <strong>Premsingh Padya</strong> © 2025</small>
       </div>
     </div>`;
 });
@@ -134,7 +134,7 @@ function askIfGuessed() {
   selectedMovie = "";
   movieName.textContent = "Movie-name will appear here";
   playHintBtn.textContent = "Play Hint for the below Movie";
-  timerDisplay.textContent = "Timer stopped.";
+  timerDisplay.textContent = "Movie Guess Game Timer stopped.";
   const guessed = confirm("Did the team guess the movie correctly?");
   alert(guessed ? " Great! Ready for the next one." : " No worries! Try again.");
 }
