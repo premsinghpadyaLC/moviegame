@@ -10,7 +10,6 @@
  * Contact: premsinghpadya944@gmail.com
  */
 
-
 let movieData = {};
 let songLinks = {};
 
@@ -43,7 +42,6 @@ startBtn.addEventListener("click", () => {
     return;
   }
 
-  startBtn.disabled = true;
   stopBtn.disabled = false;
   timerInput.disabled = true;
   playHintBtn.disabled = true;
@@ -55,7 +53,6 @@ startBtn.addEventListener("click", () => {
 
   if (!movies.length) {
     movieName.textContent = "No movies found.";
-    startBtn.disabled = false;
     stopBtn.disabled = true;
     timerInput.disabled = false;
     return;
@@ -75,6 +72,7 @@ startBtn.addEventListener("click", () => {
     timerDisplay.textContent = ` Time Left: ${timeLeft}s`;
     if (timeLeft <= 0) {
       clearInterval(timer);
+      songPlayer.innerHTML = ""; // Stop the video when timer ends
       timerDisplay.textContent = " Time's up!";
       askIfGuessed();
     }
@@ -83,6 +81,7 @@ startBtn.addEventListener("click", () => {
 
 stopBtn.addEventListener("click", () => {
   clearInterval(timer);
+  songPlayer.innerHTML = ""; // Stop the video immediately
   askIfGuessed();
 });
 
@@ -111,7 +110,6 @@ playHintBtn.addEventListener("click", () => {
 
 function askIfGuessed() {
   stopBtn.disabled = true;
-  startBtn.disabled = false;
   timerInput.disabled = false;
   playHintBtn.disabled = true;
   selectedMovie = "";
