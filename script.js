@@ -153,4 +153,23 @@ function showNewMovie(lang, era) {
   playHintBtn.textContent = ` Play Hint for: ${selectedMovie}`;
   playHintBtn.disabled = false;
   songPlayer.innerHTML = "";
+
+  // Reset the timer to the original input value
+  const inputTime = parseInt(timerInput.value) || 60;
+  timeLeft = inputTime;
+  timerDisplay.textContent = ` Time Left: ${timeLeft}s`;
+
+  // Clear and restart the timer
+  clearInterval(timer);
+  timer = setInterval(() => {
+    timeLeft--;
+    timerDisplay.textContent = ` Time Left: ${timeLeft}s`;
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      timer = null;
+      songPlayer.innerHTML = "";
+      timerDisplay.textContent = " Time's up!";
+      askIfGuessed();
+    }
+  }, 1000);
 }
