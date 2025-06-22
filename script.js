@@ -76,12 +76,12 @@ startBtn.addEventListener("click", () => {
   playHintBtn.disabled = false;
 
   timeLeft = inputTime;
-  timerDisplay.textContent = ` Time Left: ${timeLeft}s`;
+  timerDisplay.textContent = ` Movie Name Guessing Time Left: ${timeLeft}s`;
 
   clearInterval(timer);
   timer = setInterval(() => {
     timeLeft--;
-    timerDisplay.textContent = ` Time Left: ${timeLeft}s`;
+    timerDisplay.textContent = ` Movie Name Guessing Time Left: ${timeLeft}s`;
     if (timeLeft <= 0) {
       clearInterval(timer);
       timer = null;
