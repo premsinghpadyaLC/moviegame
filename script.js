@@ -134,10 +134,10 @@ function askIfGuessed() {
   selectedMovie = "";
   movieName.textContent = "Movie-name will appear here";
   playHintBtn.textContent = "Play Hint for the below Movie";
-  timerDisplay.textContent = "Movie Guess Game Timer stopped.";
-  const guessed = confirm("Did the team guess the movie correctly?");
-  alert(guessed ? " Great! Ready for the next one." : " No worries! Try again.");
+  timerDisplay.textContent = "Timer stopped.";
+  songPlayer.innerHTML = ""; // Clear the video player
 }
+
 
 // Helper to show a new movie during active game
 function showNewMovie(lang, era) {
