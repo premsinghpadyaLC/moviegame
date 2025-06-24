@@ -26,18 +26,47 @@ const songPlayer = document.getElementById("songPlayer");
 let timer, timeLeft = 60, selectedMovie = "";
 let selectedLang = "", selectedEra = "";
 
-// Load movie data
+// Load JSON data
 fetch("data/movies.json")
   .then((res) => res.json())
   .then((data) => movieData = data);
 
-// Load song video ID data
 fetch("data/video_ids.json")
   .then((res) => res.json())
   .then((data) => songLinks = data);
 
+// Welcome Modal Logic
+const modalSound = new Audio("https://actions.google.com/sounds/v1/cartoon/pop.ogg");
+const modal = document.getElementById("welcomeModal");
+const closeModalBtn = document.getElementById("closeModalBtn");
+const dontShowCheckbox = document.getElementById("dontShowCheckbox");
+const rulesToggleBtn = document.getElementById("rulesToggleBtn");
+
+window.addEventListener("load", () => {
+  const dontShow = localStorage.getItem("movieCharadesDontShowWelcome");
+  if (dontShow !== "true") {
+    modal.style.display = "flex";
+    modalSound.play().catch(() => {});
+  }
+});
+
+closeModalBtn.addEventListener("click", () => {
+  if (dontShowCheckbox.checked) {
+    localStorage.setItem("movieCharadesDontShowWelcome", "true");
+  } else {
+    localStorage.removeItem("movieCharadesDontShowWelcome");
+  }
+  modal.style.display = "none";
+});
+
+rulesToggleBtn?.addEventListener("click", () => {
+  modal.style.display = "flex";
+  modalSound.play().catch(() => {});
+  dontShowCheckbox.checked = localStorage.getItem("movieCharadesDontShowWelcome") === "true";
+});
+
+// Game Logic
 startBtn.addEventListener("click", () => {
-  // If timer already started, just show another movie
   if (timer) {
     showNewMovie(selectedLang, selectedEra);
     return;
@@ -85,7 +114,7 @@ startBtn.addEventListener("click", () => {
     if (timeLeft <= 0) {
       clearInterval(timer);
       timer = null;
-      songPlayer.innerHTML = ""; // Stop the video when timer ends
+      songPlayer.innerHTML = "";
       timerDisplay.textContent = " Time's up!";
       askIfGuessed();
     }
@@ -95,33 +124,22 @@ startBtn.addEventListener("click", () => {
 stopBtn.addEventListener("click", () => {
   clearInterval(timer);
   timer = null;
-  songPlayer.innerHTML = ""; // Stop the video immediately
+  songPlayer.innerHTML = "";
   askIfGuessed();
 });
 
 playHintBtn.addEventListener("click", () => {
   const videoId = songLinks[selectedLang]?.[selectedEra]?.[selectedMovie];
-
   if (!videoId || videoId === "N/A") {
-    songPlayer.innerHTML = `<p> No video found for this movie.</p>`;
+    songPlayer.innerHTML = `<p>No video found for this movie.</p>`;
     return;
   }
 
   const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-
   songPlayer.innerHTML = `
     <div class="video-container">
-      <iframe
-        width="100%"
-        height="300"
-        src="${embedUrl}"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-      <div class="video-credit">
-        <small> Movie Hint proudly Provided by <strong>Premsingh Padya</strong> © 2025</small>
-      </div>
+      <iframe width="100%" height="300" src="${embedUrl}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <div class="video-credit"><small>Movie Hint proudly Provided by <strong>Premsingh Padya</strong> © 2025</small></div>
     </div>`;
 });
 
@@ -135,11 +153,9 @@ function askIfGuessed() {
   movieName.textContent = "Movie-name will appear here";
   playHintBtn.textContent = "Play Hint for the below Movie";
   timerDisplay.textContent = "Timer stopped.";
-  songPlayer.innerHTML = ""; // Clear the video player
+  songPlayer.innerHTML = "";
 }
 
-
-// Helper to show a new movie during active game
 function showNewMovie(lang, era) {
   const movies = movieData[lang]?.[era] || [];
 
@@ -148,52 +164,16 @@ function showNewMovie(lang, era) {
     return;
   }
 
-//  Modal welcome popup with sound and checkbox
-const modalSound = new Audio("https://actions.google.com/sounds/v1/cartoon/pop.ogg");
-
-const modal = document.getElementById("welcomeModal");
-const closeModalBtn = document.getElementById("closeModalBtn");
-const dontShowCheckbox = document.getElementById("dontShowCheckbox");
-const rulesToggleBtn = document.getElementById("rulesToggleBtn");
-
-// Show modal on load unless "Don't show again" is set
-window.addEventListener("load", () => {
-  const dontShow = localStorage.getItem("movieCharadesDontShowWelcome");
-  if (dontShow !== "true") {
-    modal.style.display = "flex";
-    modalSound.play().catch(() => {}); // Autoplay fix
-  }
-});
-
-// Close modal + set preference
-closeModalBtn.addEventListener("click", () => {
-  if (dontShowCheckbox.checked) {
-    localStorage.setItem("movieCharadesDontShowWelcome", "true");
-  } else {
-    localStorage.removeItem("movieCharadesDontShowWelcome");
-  }
-  modal.style.display = "none";
-});
-
-// Allow reopening modal from footer
-rulesToggleBtn?.addEventListener("click", () => {
-  modal.style.display = "flex";
-  modalSound.play().catch(() => {});
-  dontShowCheckbox.checked = localStorage.getItem("movieCharadesDontShowWelcome") === "true";
-});
-
   selectedMovie = movies[Math.floor(Math.random() * movies.length)];
   movieName.textContent = ` ${selectedMovie}`;
   playHintBtn.textContent = ` Didn't Guess yet? Play Hint for: ${selectedMovie}`;
   playHintBtn.disabled = false;
   songPlayer.innerHTML = "";
 
-  // Reset the timer to the original input value
   const inputTime = parseInt(timerInput.value) || 60;
   timeLeft = inputTime;
   timerDisplay.textContent = ` Time Left: ${timeLeft}s`;
 
-  // Clear and restart the timer
   clearInterval(timer);
   timer = setInterval(() => {
     timeLeft--;
