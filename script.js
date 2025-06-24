@@ -148,16 +148,7 @@ function showNewMovie(lang, era) {
     return;
   }
 
-  const footer = document.querySelector("footer");
-  if (footer) {
-    const rulesToggle = document.createElement("button");
-    rulesToggle.id = "rulesToggleBtn";
-    rulesToggle.innerText = "Rules";
-    rulesToggle.style = "background:none;border:none;color:#ff7eb3;cursor:pointer;margin-left:1rem;font-size:0.9rem;font-weight:bold;";
-    footer.appendChild(rulesToggle);
-  }
-
-// 🎵 Modal welcome popup with sound and checkbox
+//  Modal welcome popup with sound and checkbox
 const modalSound = new Audio("https://actions.google.com/sounds/v1/cartoon/pop.ogg");
 
 const modal = document.getElementById("welcomeModal");
