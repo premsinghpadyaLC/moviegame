@@ -43,51 +43,54 @@
 
 <body>
   <div class="container">
-    <h1>Movie Name - Guess Game</h1>
+    <h1> Movie Guess Game</h1>
+    <p class="subtitle">Guess the movie with a hint of melody!</p>
 
-    <div class="controls">
-      <label for="language">Choose Movie Language:</label>
-      <select id="language" aria-label="Select Movie Language">
-        <option value="hi">Hindi</option>
-        <option value="te">Telugu</option>
-        <option value="ta">Tamil</option>
-        <option value="kn">Kannada</option>
-        <option value="ml">Malayalam</option>
-        <option value="en">English</option>
-        <option value="pa">Punjabi</option>
-        <option value="gu">Gujarati</option>
-      </select>
-
-      <label for="era">Choose Era:</label>
-      <select id="era" aria-label="Select Era">
-        <option value="new">New (2015+)</option>
-        <option value="old">Old (1950–2014)</option>
-      </select>
-
-      <label for="timerInput">Set the timer (in seconds) for your opponent to guess the movie:</label>
-      <input type="number" id="timerInput" min="10" max="300" value="60" />
-
-      <div class="buttons">
-        <button id="startBtn">Generate Random Movie Name to Play</button>
+    <form class="game-controls">
+      <div class="form-group">
+        <label for="language"> Choose Movie Language:</label>
+        <select id="language">
+          <option value="hi">Hindi</option>
+          <option value="te">Telugu</option>
+          <option value="ta">Tamil</option>
+          <option value="kn">Kannada</option>
+          <option value="ml">Malayalam</option>
+          <option value="en">English</option>
+          <option value="pa">Punjabi</option>
+          <option value="gu">Gujarati</option>
+        </select>
       </div>
-    </div>
 
-    <div id="movieName" class="output-box"> Movie will appear here</div>
-    <div id="timer" class="output-box"> Timer displays here</div>
-        <div class="buttons">
-        <button id="playHintBtn" disabled> Play Hint for the above Movie</button>
-    </div>
-    <div id="songPlayer" class="output-box"> Song player appears here</div>
-    
-    <div class="buttons">
-        <button id="stopBtn" disabled> Restart Movie Guess Game</button>
-    </div>
+      <div class="form-group">
+        <label for="era"> Choose Era:</label>
+        <select id="era">
+          <option value="new">New (2015+)</option>
+          <option value="old">Old (1950–2014)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="timerInput"> Set Timer (10-300 sec):</label>
+        <input type="number" id="timerInput" min="10" max="300" value="60" />
+      </div>
+
+      <div class="btn-group">
+        <button type="button" id="startBtn"> Generate Random Movie</button>
+        <button type="button" id="stopBtn" disabled> Restart Game</button>
+      </div>
+    </form>
+
+    <div id="movieName" class="card"> Movie will appear here</div>
+    <div id="timer" class="card"> Timer appears here</div>
+
+    <button id="playHintBtn" class="hint-btn" disabled> Play Hint</button>
+    <div id="songPlayer" class="card player-box"> Video hint loads here</div>
   </div>
 
   <footer>
-    Made with Love by <strong>Premsingh Padya</strong> — Movie Game © 2025
+    Made with ❤️ by <strong>Premsingh Padya</strong> — Movie Charades Game © 2025
   </footer>
 
-  <script type="module" src="script.js"></script>
+  <script type="module" src="script.js?v=20250624181238"></script>
 </body>
 </html>
