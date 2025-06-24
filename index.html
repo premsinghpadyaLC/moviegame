@@ -10,7 +10,6 @@
   Contact: premsinghpadya944@gmail.com
 -->
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,37 +17,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Premsingh Padya's Movie Charades Game - Guess Movies with Music!</title>
 
-  <!-- Meta Info -->
   <meta name="description" content="Play the ultimate Movie Charades Game with your friends! Randomly generate movie names by language and era, set a custom timer, and use song hints!" />
   <meta name="keywords" content="Movie Charades, Bollywood, Tollywood, Guess Movie Game, Indian Movie Game" />
   <meta name="author" content="Premsingh Padya" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Movie Charades - Guess the Movie with Songs!" />
   <meta property="og:description" content="Guess random movies from different Indian languages with song hints!" />
   <meta property="og:image" content="https://premsinghpadyalc.github.io/moviegame/assets/banner.png" />
   <meta property="og:url" content="https://premsinghpadyalc.github.io/moviegame/" />
   <meta property="og:type" content="website" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Movie Charades Game - Play with Music!" />
   <meta name="twitter:description" content="Play guessing game with movies and song hints!" />
   <meta name="twitter:image" content="https://premsinghpadyalc.github.io/moviegame/assets/banner.png" />
 
-  <!-- Favicon & Styles -->
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <div class="container">
-    <h1> Movie Guess Game</h1>
+    <h1>Movie Guess Game</h1>
     <p class="subtitle">Guess the movie with a hint of melody!</p>
 
     <form class="game-controls">
       <div class="form-group">
-        <label for="language"> Choose Movie Language:</label>
+        <label for="language">Choose Movie Language:</label>
         <select id="language">
           <option value="hi">Hindi</option>
           <option value="te">Telugu</option>
@@ -62,7 +57,7 @@
       </div>
 
       <div class="form-group">
-        <label for="era"> Choose Era:</label>
+        <label for="era">Choose Era:</label>
         <select id="era">
           <option value="new">New (2015+)</option>
           <option value="old">Old (1950–2014)</option>
@@ -70,60 +65,51 @@
       </div>
 
       <div class="form-group">
-        <label for="timerInput"> Set Timer (10-300 sec):</label>
+        <label for="timerInput">Set Timer (10-300 sec):</label>
         <input type="number" id="timerInput" min="10" max="300" value="60" />
       </div>
 
       <div class="btn-group">
-        <button type="button" id="startBtn"> Generate Random Movie</button>
-        <button type="button" id="stopBtn" disabled> Restart Game</button>
+        <button type="button" id="startBtn">Generate Random Movie</button>
+        <button type="button" id="stopBtn" disabled>Restart Game</button>
       </div>
     </form>
 
-    <div id="movieName" class="card"> Movie will appear here</div>
-    <div id="timer" class="card"> Timer appears here</div>
+    <div id="movieName" class="card">Movie will appear here</div>
+    <div id="timer" class="card">Timer appears here</div>
 
-    <button id="playHintBtn" class="hint-btn" disabled> Play Hint</button>
-    <div id="songPlayer" class="card player-box"> Video hint loads here</div>
+    <button id="playHintBtn" class="hint-btn" disabled>Play Hint</button>
+    <div id="songPlayer" class="card player-box">Video hint loads here</div>
   </div>
-  
-<!-- Welcome Instructions Modal -->
-<div id="welcomeModal" class="modal">
-  <div class="modal-content">
-    <h2>🎬 Welcome to Movie Charades Game!</h2>
-    <p>Here's how to play:</p>
-    <ul style="text-align:left; padding-left: 20px;">
-      <li>🎭 Choose the language and era.</li>
-      <li>⏱ Set a timer for your teammates to guess.</li>
-      <li>🎵 Use a song hint if they’re stuck!</li>
-      <li>🔄 Click "Restart" for a new movie.</li>
-    </ul>
 
-    <label style="display: flex; align-items: center; justify-content: center; margin-top: 1rem; font-size: 0.9rem;">
-      <input type="checkbox" id="dontShowCheckbox" style="margin-right: 8px;" />
-      Don’t show this again
-    </label>
+  <!-- Welcome Instructions Modal -->
+  <div id="welcomeModal" class="modal">
+    <div class="modal-content">
+      <h2> Welcome to Movie Charades Game!</h2>
+      <p>Here's how to play:</p>
+      <ul style="text-align:left; padding-left: 20px;">
+        <li> Choose the language and era.</li>
+        <li> Generate a Movie.</li>
+        <li> Set a timer for your opponent teammates to guess the movie name.</li>
+        <li> Use a song hint if they’re stuck!</li>
+        <li> Click "Restart" for a new movie Guess.</li>
+      </ul>
 
-    <button id="closeModalBtn" style="margin-top: 1rem; padding: 10px 20px; font-weight: bold;">Start Playing</button>
+      <label style="display: flex; align-items: center; justify-content: center; margin-top: 1rem; font-size: 0.9rem;">
+        <input type="checkbox" id="dontShowCheckbox" style="margin-right: 8px;" />
+        Don’t show this again
+      </label>
+
+      <button id="closeModalBtn" style="margin-top: 1rem; padding: 10px 20px; font-weight: bold;">Start Playing</button>
+    </div>
   </div>
-</div>
 
-<!-- Rules Toggle Button (Footer or Top) -->
-<script>
-  const footer = document.querySelector("footer");
-  if (footer) {
-    const rulesToggle = document.createElement("button");
-    rulesToggle.id = "rulesToggleBtn";
-    rulesToggle.innerText = "Rules";
-    rulesToggle.style = "background:none;border:none;color:#ff7eb3;cursor:pointer;margin-left:1rem;font-size:0.9rem;font-weight:bold;";
-    footer.appendChild(rulesToggle);
-  }
-</script>
-
-    <script type="module" src="script.js?v=20250624181238"></script>
-    <footer>
+  <!-- Footer with Rules toggle -->
+  <footer>
     Made with ❤️ by <strong>Premsingh Padya</strong> — Movie Charades Game © 2025
+    <button id="rulesToggleBtn" style="margin-left: 1rem; background: none; border: none; color: #ff7eb3; font-weight: bold; cursor: pointer;">Rules</button>
   </footer>
 
+  <script type="module" src="script.js"></script>
 </body>
 </html>
