@@ -157,6 +157,39 @@ function showNewMovie(lang, era) {
     footer.appendChild(rulesToggle);
   }
 
+// 🎵 Modal welcome popup with sound and checkbox
+const modalSound = new Audio("https://actions.google.com/sounds/v1/cartoon/pop.ogg");
+
+const modal = document.getElementById("welcomeModal");
+const closeModalBtn = document.getElementById("closeModalBtn");
+const dontShowCheckbox = document.getElementById("dontShowCheckbox");
+const rulesToggleBtn = document.getElementById("rulesToggleBtn");
+
+// Show modal on load unless "Don't show again" is set
+window.addEventListener("load", () => {
+  const dontShow = localStorage.getItem("movieCharadesDontShowWelcome");
+  if (dontShow !== "true") {
+    modal.style.display = "flex";
+    modalSound.play().catch(() => {}); // Autoplay fix
+  }
+});
+
+// Close modal + set preference
+closeModalBtn.addEventListener("click", () => {
+  if (dontShowCheckbox.checked) {
+    localStorage.setItem("movieCharadesDontShowWelcome", "true");
+  } else {
+    localStorage.removeItem("movieCharadesDontShowWelcome");
+  }
+  modal.style.display = "none";
+});
+
+// Allow reopening modal from footer
+rulesToggleBtn?.addEventListener("click", () => {
+  modal.style.display = "flex";
+  modalSound.play().catch(() => {});
+  dontShowCheckbox.checked = localStorage.getItem("movieCharadesDontShowWelcome") === "true";
+});
 
   selectedMovie = movies[Math.floor(Math.random() * movies.length)];
   movieName.textContent = ` ${selectedMovie}`;
