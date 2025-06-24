@@ -87,16 +87,16 @@
     <div id="songPlayer" class="card player-box"> Video hint loads here</div>
   </div>
   
-  <!-- Welcome Instructions Modal -->
+<!-- Welcome Instructions Modal -->
 <div id="welcomeModal" class="modal">
   <div class="modal-content">
-    <h2> Welcome to Movie Charades Game!</h2>
+    <h2>🎬 Welcome to Movie Charades Game!</h2>
     <p>Here's how to play:</p>
     <ul style="text-align:left; padding-left: 20px;">
-      <li> Choose the language and era.</li>
-      <li> Set a timer for your teammates to guess.</li>
-      <li> Use a song hint if they’re stuck!</li>
-      <li> Click "Restart" for a new movie.</li>
+      <li>🎭 Choose the language and era.</li>
+      <li>⏱ Set a timer for your teammates to guess.</li>
+      <li>🎵 Use a song hint if they’re stuck!</li>
+      <li>🔄 Click "Restart" for a new movie.</li>
     </ul>
 
     <label style="display: flex; align-items: center; justify-content: center; margin-top: 1rem; font-size: 0.9rem;">
@@ -107,6 +107,19 @@
     <button id="closeModalBtn" style="margin-top: 1rem; padding: 10px 20px; font-weight: bold;">Start Playing</button>
   </div>
 </div>
+
+<!-- Rules Toggle Button (Footer or Top) -->
+<script>
+  const footer = document.querySelector("footer");
+  if (footer) {
+    const rulesToggle = document.createElement("button");
+    rulesToggle.id = "rulesToggleBtn";
+    rulesToggle.innerText = "Rules";
+    rulesToggle.style = "background:none;border:none;color:#ff7eb3;cursor:pointer;margin-left:1rem;font-size:0.9rem;font-weight:bold;";
+    footer.appendChild(rulesToggle);
+  }
+</script>
+
     <script type="module" src="script.js?v=20250624181238"></script>
     <footer>
     Made with ❤️ by <strong>Premsingh Padya</strong> — Movie Charades Game © 2025
