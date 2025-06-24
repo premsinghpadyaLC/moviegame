@@ -148,6 +148,16 @@ function showNewMovie(lang, era) {
     return;
   }
 
+  const footer = document.querySelector("footer");
+  if (footer) {
+    const rulesToggle = document.createElement("button");
+    rulesToggle.id = "rulesToggleBtn";
+    rulesToggle.innerText = "Rules";
+    rulesToggle.style = "background:none;border:none;color:#ff7eb3;cursor:pointer;margin-left:1rem;font-size:0.9rem;font-weight:bold;";
+    footer.appendChild(rulesToggle);
+  }
+
+
   selectedMovie = movies[Math.floor(Math.random() * movies.length)];
   movieName.textContent = ` ${selectedMovie}`;
   playHintBtn.textContent = ` Didn't Guess yet? Play Hint for: ${selectedMovie}`;
