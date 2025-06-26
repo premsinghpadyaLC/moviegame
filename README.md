@@ -12,10 +12,10 @@
 
 **Movie Charades Game** is a web-based team activity built using HTML, CSS, and JavaScript. It allows players to:
 
-- Randomly generate Indian movies (by language and era)
+- Randomly generate movies (by language and era)
 - Set timers for guessing
 - Use song hints if teams get stuck
-- Track points based on gameplay rules
+- Restart the Movie Guess Game as soon as ends.
 
 It's the **ultimate fusion of movies, music, gestures, and team spirit.**
 
@@ -26,9 +26,10 @@ It's the **ultimate fusion of movies, music, gestures, and team spirit.**
 During a group game night, I noticed how teams struggled with choosing fair movie names or explaining the rules. Often, the same movies were reused, or the gameplay became unclear and with no timer set. 
 
 So I decided to create a platform that:
-- **Simplifies and automates movie selection**
+- **Simplifies and automates movie selection (Anytime)**
 - **Explains rules immediately on startup**
 - **Adds a creative twist with music hint finally if the movie is not guessed till the end**
+- **Restart whenever you would like to as soon as the movie guess ends**
 
 I wanted to make a tool not just for *our team*, but something others could use and enjoy — whether in a hostel, office, or family gathering.
 
@@ -36,7 +37,7 @@ I wanted to make a tool not just for *our team*, but something others could use 
 
 ##  How the Game Works
 
-1. **Team A selects a movie** (using the generator button ) and gives it to **one member of Team B**.
+1. **Team A selects a movie (anytime)** (using the generator button ) and gives it to **one member of Team B**.
 2. That member **acts silently** to help Team B guess the movie.
 3. If stuck, they can **pass the acting role to another teammate**.
 4. If guessed:
