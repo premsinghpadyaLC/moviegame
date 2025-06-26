@@ -8,7 +8,7 @@
 
 ---
 
-## 🧠 What is Movie Charades?
+##  What is Movie Charades?
 
 **Movie Charades Game** is a web-based team activity built using HTML, CSS, and JavaScript. It allows players to:
 
@@ -21,7 +21,7 @@ It's the **ultimate fusion of movies, music, gestures, and team spirit.**
 
 ---
 
-## ✨ Why I Built It (The Story)
+##  Why I Built It (The Story)
 
 During a group game night, I noticed how teams struggled with choosing fair movie names or explaining the rules. Often, the same movies were reused, or the gameplay became unclear and with no timer set. 
 
@@ -34,7 +34,7 @@ I wanted to make a tool not just for *our team*, but something others could use 
 
 ---
 
-## 🎮 How the Game Works
+##  How the Game Works
 
 1. **Team A selects a movie** (using the generator button ) and gives it to **one member of Team B**.
 2. That member **acts silently** to help Team B guess the movie.
