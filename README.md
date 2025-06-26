@@ -1,4 +1,4 @@
-# 🎬 Movie Charades Game – Built by Premsingh Padya
+#  Movie Charades Game – Built by Premsingh Padya
 
 > **Interactive team game to guess movies using acting and music hints.**
 >  
