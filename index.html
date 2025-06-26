@@ -82,28 +82,46 @@
     <div id="songPlayer" class="card player-box">Video hint loads here</div>
   </div>
 
-  <!-- Welcome Instructions Modal -->
-  <div id="welcomeModal" class="modal">
-    <div class="modal-content">
-      <h2> Welcome to Movie Charades Game!</h2>
-      <p>Here's how to play:</p>
-      <ul style="text-align:left; padding-left: 20px;">
-        <li> Choose the language and era.</li>
-        <li> Generate a Movie.</li>
-        <li> Set a timer for your opponent teammates to guess the movie name.</li>
-        <li> Use a song hint if they’re stuck!</li>
-        <li> Click "Restart" for a new movie Guess.</li>
+<!-- Welcome Instructions Modal -->
+<div id="welcomeModal" class="modal">
+  <div class="modal-content">
+    <h2> Welcome to Movie Guess Game!</h2>
+    <p><strong>Behind the Game: The Story & Purpose</strong></p>
+    <hr>
+
+    <p>The <strong>Movie Charades Game</strong> was designed to bring excitement, strategy, and fun into our team gatherings. Here's how the game works:</p>
+
+    <ul style="text-align:left; padding-left: 20px;">
+      <li><strong>One team selects a movie</strong> and gives it to a member of the <strong>opposing team</strong>, who must <strong>act it out silently</strong> for their team to guess.</li>
+      <li>If the first actor struggles, they can <strong>pass the role</strong> to another teammate. (Players who now know the answer are no longer eligible to guess.)</li>
+      <li>If the <strong>guess is correct</strong>, the <strong>opponent team earns a point</strong>. If incorrect, the <strong>movie-giving team earns a point</strong>.</li>
+      <li><strong>Music Hint Twist:</strong> If acting doesn’t help, the team may use a <strong>music hint (a song from the movie)</strong>.</li>
+      <ul style="padding-left: 20px;">
+        <li>If guessed correctly after the hint: <strong>½ point to both teams</strong> — it’s a draw!</li>
+        <li>If still not guessed: <strong>movie-giving team gets 1 full point</strong>.</li>
       </ul>
+    </ul>
 
-      <label style="display: flex; align-items: center; justify-content: center; margin-top: 1rem; font-size: 0.9rem;">
-        <input type="checkbox" id="dontShowCheckbox" style="margin-right: 8px;" />
-        Don’t show this again
-      </label>
+    <p><strong>Why This Website?</strong></p>
+    <ul style="text-align:left; padding-left: 20px;">
+      <li>Helps our team <strong>pick great movie names</strong> (easy or tough) without confusion.</li>
+      <li><strong>Automates selection</strong> to avoid repeats and keeps the game fair.</li>
+      <li>Supports fun, <strong>music-powered backup hints</strong> to spice up the game.</li>
+    </ul>
 
-      <button id="closeModalBtn" style="margin-top: 1rem; padding: 10px 20px; font-weight: bold;">Start Playing</button>
-    </div>
+    <p><strong>Verdict:</strong><br>
+    Yes — My idea is to make the experience <strong>fun, engaging, and unique</strong>. It blends <strong>team interaction</strong>, <strong>charades</strong>, <strong>music</strong>, and <strong>tech</strong> all together — supporting not just gameplay but smart strategy and friendly competition.</p>
+
+    <p style="text-align:right;"><em>- Premsingh Padya</em></p>
+
+    <label style="display: flex; align-items: center; justify-content: center; margin-top: 1rem; font-size: 0.9rem;">
+      <input type="checkbox" id="dontShowCheckbox" style="margin-right: 8px;" />
+      Don’t show this again
+    </label>
+
+    <button id="closeModalBtn" style="margin-top: 1rem; padding: 10px 20px; font-weight: bold;">Start Playing</button>
   </div>
-
+</div>
   <!-- Footer with Rules toggle -->
   <footer>
     Made with ❤️ by <strong>Premsingh Padya</strong> — Movie Charades Game © 2025
