@@ -88,7 +88,7 @@ No backend or server needed — works completely in the browser!
 
 A detailed gameplay flow diagram was designed using Python and Graphviz to explain the entire structure.
 
-[View Diagram (PDF)](https://github.com/premsinghpadyalc/moviegame/blob/main/movie_charades_game_flow_diagram.pdf)
+[View Diagram (PDF)](flowchart/movie_guess_game_flow_diagram.pdf)
 
 ---
 
