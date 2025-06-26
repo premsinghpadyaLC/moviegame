@@ -4,7 +4,7 @@
 >  
 > Built for fun, strategy, and teamwork — designed and developed by Premsingh Padya.
 
-![Movie Charades Banner](https://premsinghpadyalc.github.io/moviegame/assets/banner.png)
+![Movie Charades Banner](assets/banner.png)
 
 ---
 
